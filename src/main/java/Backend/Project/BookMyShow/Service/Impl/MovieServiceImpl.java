@@ -6,7 +6,8 @@ import org.springframework.stereotype.Service;
 import lombok.extern.slf4j.Slf4j;
 
 import Backend.Project.BookMyShow.Converter.MovieConverter;
-import Backend.Project.BookMyShow.Dto.MovieDto;
+import Backend.Project.BookMyShow.Dto.EntryRequestDto.MovieEntryDto;
+import Backend.Project.BookMyShow.Dto.ResponseDto.MovieResponseDto;
 import Backend.Project.BookMyShow.Model.MovieEntity;
 import Backend.Project.BookMyShow.Repository.MovieRepository;
 import Backend.Project.BookMyShow.Service.MovieService;
@@ -19,20 +20,21 @@ public class MovieServiceImpl implements MovieService {
     MovieRepository movieRepository;
 
     @Override
-    public MovieEntity addMovie(MovieDto movieDto) {
-        log.info("Adding the Movie", movieDto);
+    public MovieResponseDto addMovie(MovieEntryDto movieEntryDto) {
 
-        MovieEntity movieEntity = MovieConverter.convertDtoToEntity(movieDto);
+        log.info("Adding the Movie", movieEntryDto);
+
+        MovieEntity movieEntity = MovieConverter.convertDtoToEntity(movieEntryDto);
         movieRepository.save(movieEntity);
 
-        return movieEntity;
+        return MovieConverter.convertEntityToDto(movieEntity);
     }
 
     @Override
-    public MovieDto getMovie(int id) {
+    public MovieResponseDto getMovie(int id) {
         MovieEntity movieEntity = movieRepository.findById(id).get();
-        MovieDto movieDto = MovieConverter.convertEntityToDto(movieEntity);
-        return movieDto;
+        MovieResponseDto movieResponseDto = MovieConverter.convertEntityToDto(movieEntity);
+        return movieResponseDto;
     }
     
 }

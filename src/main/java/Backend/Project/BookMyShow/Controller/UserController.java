@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import Backend.Project.BookMyShow.Dto.UserDto;
-import Backend.Project.BookMyShow.Model.UserEntity;
+import Backend.Project.BookMyShow.Dto.EntryRequestDto.UserEntryDto;
+import Backend.Project.BookMyShow.Dto.ResponseDto.UserResponseDto;
 import Backend.Project.BookMyShow.Service.Impl.UserServiceImpl;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,15 +23,15 @@ public class UserController {
     UserServiceImpl userService;
     
     @PostMapping("/add-user")
-    public ResponseEntity<UserEntity> addUser(@RequestBody UserDto userDto) {
-        UserEntity userEntity = userService.addUser(userDto);
-        return new ResponseEntity<>(userEntity, HttpStatus.CREATED);
+    public ResponseEntity<UserResponseDto> addUser(@RequestBody UserEntryDto userEntryDto) {
+        UserResponseDto userResponseDto = userService.addUser(userEntryDto);
+        return new ResponseEntity<>(userResponseDto, HttpStatus.CREATED);
     } 
 
     @GetMapping("/get-user-by-id/{id}")
-    public ResponseEntity<UserDto> getMethodName(@PathVariable(value = "id") int id) {
-        UserDto userDto = userService.getUser(id);
-        return new ResponseEntity<>(userDto, HttpStatus.FOUND);
+    public ResponseEntity<UserResponseDto> getMethodName(@PathVariable(value = "id") int id) {
+        UserResponseDto userResponseDto = userService.getUser(id);
+        return new ResponseEntity<>(userResponseDto, HttpStatus.FOUND);
     }
     
 }

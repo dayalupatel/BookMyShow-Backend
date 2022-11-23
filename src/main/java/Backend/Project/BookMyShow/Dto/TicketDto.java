@@ -1,5 +1,7 @@
 package Backend.Project.BookMyShow.Dto;
 
+import Backend.Project.BookMyShow.Dto.ResponseDto.ShowResponseDto;
+import Backend.Project.BookMyShow.Dto.ResponseDto.UserResponseDto;
 import lombok.Builder;
 import lombok.Data;
 
@@ -9,6 +11,6 @@ public class TicketDto {
     int id;
     String alotedSeat;
     double amount;
-    UserDto userDto;
-    ShowDto showDto;
+    UserResponseDto user;
+    ShowResponseDto show;
 }

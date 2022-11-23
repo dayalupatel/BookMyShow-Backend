@@ -8,7 +8,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import Backend.Project.BookMyShow.Converter.TheaterConverter;
-import Backend.Project.BookMyShow.Dto.TheaterDto;
+import Backend.Project.BookMyShow.Dto.EntryRequestDto.TheaterEntryDto;
+import Backend.Project.BookMyShow.Dto.ResponseDto.TheaterResponseDto;
 import Backend.Project.BookMyShow.Model.TheaterEntity;
 import Backend.Project.BookMyShow.Model.TheaterSeatEntity;
 import Backend.Project.BookMyShow.Repository.TheaterRepository;
@@ -25,10 +26,10 @@ public class TheaterServiceImpl implements TheaterService {
     TheaterSeatRepository theaterSeatRepository;
 
     @Override
-    public TheaterDto addTheater(TheaterDto theaterDto) {
+    public TheaterResponseDto addTheater(TheaterEntryDto theaterEntryDto) {
         // we need a thater entity
-        TheaterEntity theaterEntity = TheaterConverter.convertDtoToEntity(theaterDto);
-
+        TheaterEntity theaterEntity = TheaterConverter.convertDtoToEntity(theaterEntryDto);
+        
         // create theater Seats
         List<TheaterSeatEntity> seats = createTheaterSeats();
         for(TheaterSeatEntity theaterSeatEntity : seats) {
@@ -37,7 +38,7 @@ public class TheaterServiceImpl implements TheaterService {
 
         theaterRepository.save(theaterEntity);
 
-        return theaterDto;
+        return TheaterConverter.convertEntityToDto(theaterEntity);
     }
 
     List<TheaterSeatEntity> createTheaterSeats() {
@@ -65,10 +66,10 @@ public class TheaterServiceImpl implements TheaterService {
     }
 
     @Override
-    public TheaterDto getTheater(int id) {
+    public TheaterResponseDto getTheater(int id) {
         TheaterEntity theaterEntity = theaterRepository.findById(id).get();
-        TheaterDto theaterDto = TheaterConverter.convertEntityToDto(theaterEntity);
-        return theaterDto;
+        TheaterResponseDto theaterResponseDto = TheaterConverter.convertEntityToDto(theaterEntity);
+        return theaterResponseDto;
     }
     
 }

@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import Backend.Project.BookMyShow.Dto.TheaterDto;
+import Backend.Project.BookMyShow.Dto.EntryRequestDto.TheaterEntryDto;
+import Backend.Project.BookMyShow.Dto.ResponseDto.TheaterResponseDto;
 import Backend.Project.BookMyShow.Service.Impl.TheaterServiceImpl;
 
 @RestController
@@ -20,13 +21,13 @@ public class TheaterController {
     TheaterServiceImpl theaterService;
 
     @GetMapping("/get-theater/{id}")
-    public ResponseEntity<TheaterDto> getTheater(@PathVariable(value = "id") int id) {
+    public ResponseEntity<TheaterResponseDto> getTheater(@PathVariable(value = "id") int id) {
         return new ResponseEntity<>(theaterService.getTheater(id) , HttpStatus.FOUND);
     }
 
     @PostMapping("/add-theater")
-    public ResponseEntity<TheaterDto> addTheater(@RequestBody TheaterDto theaterDto) {
-        return new ResponseEntity<>(theaterService.addTheater(theaterDto), HttpStatus.CREATED);
+    public ResponseEntity<TheaterResponseDto> addTheater(@RequestBody TheaterEntryDto theaterEntryDto) {
+        return new ResponseEntity<>(theaterService.addTheater(theaterEntryDto), HttpStatus.CREATED);
     }
 
 }

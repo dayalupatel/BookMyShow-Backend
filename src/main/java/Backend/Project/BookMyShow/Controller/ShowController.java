@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import Backend.Project.BookMyShow.Dto.ShowDto;
-import Backend.Project.BookMyShow.Model.ShowEntity;
+import Backend.Project.BookMyShow.Dto.EntryRequestDto.ShowEntryDto;
+import Backend.Project.BookMyShow.Dto.ResponseDto.ShowResponseDto;
 import Backend.Project.BookMyShow.Service.Impl.ShowServiceImpl;
 
 @RestController
@@ -21,12 +21,12 @@ public class ShowController {
     ShowServiceImpl showService;
 
     @GetMapping("/get-show/{id}")
-    public ResponseEntity<ShowDto> getShow(@RequestParam int id) {
+    public ResponseEntity<ShowResponseDto> getShow(@RequestParam int id) {
         return new ResponseEntity<>(showService.getShow(id), HttpStatus.FOUND);
     }
 
     @PostMapping("/add-show")
-    public ResponseEntity<ShowEntity> addShow(@RequestBody ShowDto showDto) {
-        return new ResponseEntity<>(showService.addShow(showDto), HttpStatus.CREATED);
+    public ResponseEntity<ShowResponseDto> addShow(@RequestBody ShowEntryDto showEntryDto) {
+        return new ResponseEntity<>(showService.addShow(showEntryDto), HttpStatus.CREATED);
     }
 }

@@ -6,8 +6,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import Backend.Project.BookMyShow.Dto.MovieDto;
-import Backend.Project.BookMyShow.Model.MovieEntity;
+import Backend.Project.BookMyShow.Dto.EntryRequestDto.MovieEntryDto;
+import Backend.Project.BookMyShow.Dto.ResponseDto.MovieResponseDto;
 import Backend.Project.BookMyShow.Service.Impl.MovieServiceImpl;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,12 +22,12 @@ public class MovieController {
     MovieServiceImpl movieSerivice;
 
     @GetMapping(value="/get-movie/{id}")
-    public ResponseEntity<MovieDto> getMovie(@RequestParam("id") int id) {
+    public ResponseEntity<MovieResponseDto> getMovie(@RequestParam("id") int id) {
         return new ResponseEntity<>(movieSerivice.getMovie(id), HttpStatus.FOUND);
     }
     
     @PostMapping("/add-movie")
-    public ResponseEntity<MovieEntity> addMovie(@RequestBody MovieDto movieDto) {
-        return new ResponseEntity<>(movieSerivice.addMovie(movieDto), HttpStatus.CREATED);
+    public ResponseEntity<MovieResponseDto> addMovie(@RequestBody MovieEntryDto movieEntryDto) {
+        return new ResponseEntity<>(movieSerivice.addMovie(movieEntryDto), HttpStatus.CREATED);
     }
 }

@@ -7,6 +7,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -28,7 +30,7 @@ import lombok.Builder;
 public class ShowEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private int id;
 
     @Column(name = "showDate", columnDefinition = "DATE", nullable = false)
     private LocalDate showDate;
@@ -36,11 +38,13 @@ public class ShowEntity {
     @Column(name = "showTime", columnDefinition = "TIME", nullable = false)
     private LocalTime showTime;
 
+    @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @CreatedDate
     @Column(name = "createdOn")
     private Date createdOn;
     
+    @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @LastModifiedDate
     @Column(name = "updatedAt")

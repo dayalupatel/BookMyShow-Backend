@@ -1,11 +1,12 @@
 package Backend.Project.BookMyShow.Service;
 
-import Backend.Project.BookMyShow.Dto.TheaterDto;
+import Backend.Project.BookMyShow.Dto.EntryRequestDto.TheaterEntryDto;
+import Backend.Project.BookMyShow.Dto.ResponseDto.TheaterResponseDto;
 
 public interface TheaterService {
     // Add Theater
-    TheaterDto addTheater(TheaterDto theaterDto);
+    TheaterResponseDto addTheater(TheaterEntryDto theaterEntryDto);
 
     // Get Theater
-    TheaterDto getTheater(int id);
+    TheaterResponseDto getTheater(int id);
 }

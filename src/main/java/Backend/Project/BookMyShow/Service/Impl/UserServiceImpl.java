@@ -5,7 +5,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import Backend.Project.BookMyShow.Converter.UserConverter;
-import Backend.Project.BookMyShow.Dto.UserDto;
+import Backend.Project.BookMyShow.Dto.EntryRequestDto.UserEntryDto;
+import Backend.Project.BookMyShow.Dto.ResponseDto.UserResponseDto;
 import Backend.Project.BookMyShow.Model.UserEntity;
 import Backend.Project.BookMyShow.Repository.UserRepository;
 import Backend.Project.BookMyShow.Service.UserService;
@@ -17,19 +18,19 @@ public class UserServiceImpl implements UserService {
     UserRepository userRepository;
 
     @Override
-    public UserEntity addUser(UserDto userDto) {
-        UserEntity userEntity = UserConverter.convertDtoToEntity(userDto) ;
+    public UserResponseDto addUser(UserEntryDto userEntryDto) {
+        UserEntity userEntity = UserConverter.convertDtoToEntity(userEntryDto);
         userRepository.save(userEntity);
-        return userEntity;
+        return UserConverter.convertEntityToDto(userEntity);
     }
 
     @Override
-    public UserDto getUser(int id) {
+    public UserResponseDto getUser(int id) {
         UserEntity user = userRepository.findById(id).get();
 
-        UserDto userDto = UserConverter.convertEntityToDto(user);
+        UserResponseDto userResponseDto = UserConverter.convertEntityToDto(user);
 
-        return userDto;
+        return userResponseDto;
     }
     
 }

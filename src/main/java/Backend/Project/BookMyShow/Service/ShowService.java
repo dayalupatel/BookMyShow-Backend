@@ -1,12 +1,12 @@
 package Backend.Project.BookMyShow.Service;
 
-import Backend.Project.BookMyShow.Dto.ShowDto;
-import Backend.Project.BookMyShow.Model.ShowEntity;
+import Backend.Project.BookMyShow.Dto.EntryRequestDto.ShowEntryDto;
+import Backend.Project.BookMyShow.Dto.ResponseDto.ShowResponseDto;
 
 public interface ShowService {
     // Add Show
-    ShowEntity addShow(ShowDto showDto);
+    ShowResponseDto addShow(ShowEntryDto showEntryDto);
 
     // Get Show
-    ShowDto getShow(int id);
+    ShowResponseDto getShow(int id);
 }

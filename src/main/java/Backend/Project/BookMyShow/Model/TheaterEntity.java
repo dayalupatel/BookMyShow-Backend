@@ -5,8 +5,6 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,7 +13,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import Backend.Project.BookMyShow.enums.SeatType;
+import Backend.Project.BookMyShow.enums.TheaterType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -28,7 +26,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 @Builder
-@Table(name="theatres")
+@Table(name="theaters")
 public class TheaterEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,12 +35,18 @@ public class TheaterEntity {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "seatType", nullable = false)
-    private SeatType seatType;
+    // @Enumerated(EnumType.STRING)
+    // @Column(name = "seatType", nullable = false)
+    // private SeatType seatType;
 
     @Column(name = "address", nullable = false)
     private String address;
+
+    @Column(name = "city", nullable = false)
+    private String city;
+
+    @Column(name = "theaterType", nullable = false)
+    private TheaterType theaterType;
 
     @OneToMany(mappedBy = "theater", cascade = CascadeType.ALL)
     @JsonIgnore

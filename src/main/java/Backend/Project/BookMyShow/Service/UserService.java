@@ -1,12 +1,12 @@
 package Backend.Project.BookMyShow.Service;
 
-import Backend.Project.BookMyShow.Dto.UserDto;
-import Backend.Project.BookMyShow.Model.UserEntity;
+import Backend.Project.BookMyShow.Dto.EntryRequestDto.UserEntryDto;
+import Backend.Project.BookMyShow.Dto.ResponseDto.UserResponseDto;
 
 public interface UserService {
     // Add User
-    UserEntity addUser(UserDto userDto);
+    UserResponseDto addUser(UserEntryDto userEntryDto);
 
     // Get User
-    UserDto getUser(int id);
+    UserResponseDto getUser(int id);
 }

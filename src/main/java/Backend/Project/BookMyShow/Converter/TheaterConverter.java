@@ -1,14 +1,23 @@
 package Backend.Project.BookMyShow.Converter;
 
-import Backend.Project.BookMyShow.Dto.TheaterDto;
+import Backend.Project.BookMyShow.Dto.EntryRequestDto.TheaterEntryDto;
+import Backend.Project.BookMyShow.Dto.ResponseDto.TheaterResponseDto;
 import Backend.Project.BookMyShow.Model.TheaterEntity;
 
 public class TheaterConverter {
-    public static TheaterEntity convertDtoToEntity(TheaterDto theaterDto) {
-        return TheaterEntity.builder().name(theaterDto.getName()).address(theaterDto.getAddress()).build();
+    public static TheaterEntity convertDtoToEntity(TheaterEntryDto theaterEntryDto) {
+        return TheaterEntity.builder()
+            .name(theaterEntryDto.getName())
+            .address(theaterEntryDto.getAddress())
+            .city(theaterEntryDto.getCity())
+            .theaterType(theaterEntryDto.getTheaterType()).build();
     }
     
-    public static TheaterDto convertEntityToDto(TheaterEntity theaterEntity) {
-        return null;
+    public static TheaterResponseDto convertEntityToDto(TheaterEntity theaterEntity) {
+        return TheaterResponseDto.builder()
+            .name(theaterEntity.getName())
+            .address(theaterEntity.getAddress())
+            .city(theaterEntity.getCity())
+            .theaterType(theaterEntity.getTheaterType()).build();
     }
 }

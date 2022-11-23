@@ -1,13 +1,13 @@
 package Backend.Project.BookMyShow.Service;
 
-import Backend.Project.BookMyShow.Dto.MovieDto;
-import Backend.Project.BookMyShow.Model.MovieEntity;
+import Backend.Project.BookMyShow.Dto.EntryRequestDto.MovieEntryDto;
+import Backend.Project.BookMyShow.Dto.ResponseDto.MovieResponseDto;
 
 public interface MovieService {
     // Add Movie
-    MovieEntity addMovie(MovieDto movieDto);
+    MovieResponseDto addMovie(MovieEntryDto movieEntryDto);
     
     // Get Movie
-    MovieDto getMovie(int id);
+    MovieResponseDto getMovie(int id);
 
 }
