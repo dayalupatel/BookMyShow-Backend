@@ -44,9 +44,13 @@ public class ShowServiceImpl implements ShowService {
         showEntity.setMovie(movieEntity);
         showEntity.setTheater(theaterEntity);
 
+        // Saving the Show
         showRepository.save(showEntity);
-        
+
         generateShowEntitySeats(theaterEntity.getTheaterSeatList(), showEntity);
+        
+        // Saving the Show
+        showRepository.save(showEntity);
         
         return ShowConverter.convertEntityToDto(showEntity);
     }
@@ -64,8 +68,10 @@ public class ShowServiceImpl implements ShowService {
         }
 
         // Saving all seats in repository
-
         showSeatRepository.saveAll(showSeatEntityList);
+
+        // adding seatsList in show
+        showEntity.setShowSeatList(showSeatEntityList);
     }
 
     @Override

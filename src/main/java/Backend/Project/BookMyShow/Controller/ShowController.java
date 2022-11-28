@@ -20,8 +20,8 @@ public class ShowController {
     @Autowired
     ShowServiceImpl showService;
 
-    @GetMapping("/get-show/{id}")
-    public ResponseEntity<ShowResponseDto> getShow(@RequestParam int id) {
+    @GetMapping("/get-show")
+    public ResponseEntity<ShowResponseDto> getShow(@RequestParam("id") int id) {
         return new ResponseEntity<>(showService.getShow(id), HttpStatus.FOUND);
     }
 

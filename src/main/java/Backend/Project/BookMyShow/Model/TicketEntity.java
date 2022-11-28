@@ -36,7 +36,7 @@ import lombok.Builder;
 public class TicketEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private int id;
 
     @Column(name = "allotedSeat", nullable = false)
     private String allotedSeats;

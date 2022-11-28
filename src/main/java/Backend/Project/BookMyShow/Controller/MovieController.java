@@ -21,7 +21,7 @@ public class MovieController {
     @Autowired
     MovieServiceImpl movieSerivice;
 
-    @GetMapping(value="/get-movie/{id}")
+    @GetMapping(value="/get-movie")
     public ResponseEntity<MovieResponseDto> getMovie(@RequestParam("id") int id) {
         return new ResponseEntity<>(movieSerivice.getMovie(id), HttpStatus.FOUND);
     }

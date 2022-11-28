@@ -32,10 +32,9 @@ public class TicketServiceImpl implements TicketService {
     ShowRepository showRepository;
     
     @Override
-    public TicketDto getTicket(int id) {
-        TicketEntity ticketEntity = ticketRepository.findById(id).get();
-        TicketDto ticketDto = TicketConverter.convertEntityToDto(ticketEntity);
-        return ticketDto;
+    public TicketEntity getTicket(int id) {
+        TicketEntity ticketEntity = ticketRepository.findById(id).get(); 
+        return ticketEntity;
     }
 
     @Override
@@ -81,15 +80,18 @@ public class TicketServiceImpl implements TicketService {
 
         // STEP 3 : 
         double amount = 0;
+        String allotedSeat = "";
 
         for(ShowSeatsEntity seat : bookedSeats) {
             seat.setBooked(true);
             seat.setBookedAt(new Date());
             seat.setTicket(ticketEntity);
 
+            allotedSeat += seat.getSeatNumber()+" ";
             amount += seat.getRate();
         }
-        ticketEntity.setAllotedSeats(String.valueOf(bookedSeats));
+        
+        ticketEntity.setAllotedSeats(allotedSeat);
         ticketEntity.setAmount(amount);
 
         //Connect in the Show and the user

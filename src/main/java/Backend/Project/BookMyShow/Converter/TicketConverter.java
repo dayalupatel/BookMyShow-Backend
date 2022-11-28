@@ -7,8 +7,8 @@ public class TicketConverter {
 
     public static TicketDto convertEntityToDto(TicketEntity ticket) {
         return TicketDto.builder()
-                .id((int)ticket.getId())
+                .id(ticket.getId())
                 .amount(ticket.getAmount())
-                .alotedSeat(ticket.getAllotedSeats()).build();
+                .alotedSeats(ticket.getAllotedSeats()).build();
     }
 }

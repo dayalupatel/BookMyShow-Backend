@@ -1,5 +1,7 @@
 package Backend.Project.BookMyShow.Service.Impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -31,6 +33,12 @@ public class UserServiceImpl implements UserService {
         UserResponseDto userResponseDto = UserConverter.convertEntityToDto(user);
 
         return userResponseDto;
+    }
+
+    @Override
+    public List<UserEntity> getAllUser() {
+        List<UserEntity> usersList = userRepository.findAll();
+        return usersList;
     }
     
 }

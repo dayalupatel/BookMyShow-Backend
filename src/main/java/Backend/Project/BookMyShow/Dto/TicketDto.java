@@ -9,7 +9,7 @@ import lombok.Data;
 @Builder
 public class TicketDto {
     int id;
-    String alotedSeat;
+    String alotedSeats;
     double amount;
     UserResponseDto user;
     ShowResponseDto show;

@@ -1,12 +1,15 @@
 package Backend.Project.BookMyShow.Dto.EntryRequestDto;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
 import java.time.LocalDate;
 
-@Data
 @Builder
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+
 public class MovieEntryDto {
     String name;
     LocalDate releaseDate;
